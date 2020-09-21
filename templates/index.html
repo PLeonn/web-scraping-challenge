@@ -1,0 +1,53 @@
+<! I found my template here: -- https://getbootstrap.com/docs/4.0/getting-started/introduction/ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Let's Explore Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Let's Explore Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    
+    <h2>What's new with Mars?</h2>
+    <h3>{{ mars_data.title }}</h3>
+    <p>{{ mars_data.paragraph }}</p>
+    <h2>Check out Mars!</h2>
+    <img src= {{mars_data.featured_image_url}} alt="Featured Mars Image" />
+    
+    <div class="col-md-5"></div>
+    <h3>Facts About Mars</h3>
+    {{mars_data.mars_facts|safe}}
+
+    <h3>Hemispheres</h3>
+    <div class="row">
+        {% for item in mars_data.hemisphere_image_urls %}
+          <div class="col-md-6">
+          
+          <img src= {{item.image_url}} alt="Hemisphere Image" />
+          <h3>"{{ item.title }}"</h3>
+          </div>
+        {% endfor %}
+
+    </div>
+  </div>          
+      </div>
+
+    </div>
+
+
+
+  </div>
+  </div>
+</body>
+
+</html>
