@@ -31,7 +31,7 @@ def scrape():
     #Like before, not sure why I need this, but my CS friend said it should be here, and it works better
     time.sleep(4)
     
-    para  = para_soup.find('div', class='article_teaser_body')
+    para  = para_soup.find('div', class_='article_teaser_body')
     
     para_text = para.text
     
@@ -68,5 +68,29 @@ def scrape():
     mars_df = mars_df.to_html()
     
     mars_data['facts'] = mars_df
+
+#This section scrapes for Hemisphere data
+    hemi_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    base_hemi_url = 'https://astrogeology.usgs.gov'
+
+    browser.visit(hemi_url)
+
+    hemi_html = browser.html
+    hemi_soup = bs(hemi_html, 'html.parser')
+    hemi_urls = hemi_soup.find_all('div', class_='item')
+
+    img_urls = []
     
+    for url in hemi_urls:
+        hemi_title = url.find('h3').text
+        hemi_link = url.find('a')['href']
+        browser.visit(base_hemi_url + hemi_link)
+        hemi_img_url = browser.html
+        hemi_img_soup = bs(hemi_img_url, 'html.parser')
+        hemi_img_link = base_hemi_url + hemi_img_soup.find('img', class_="wide-image")['src']
+        img_urls.append({"title": title, "url": hemi_img_link})
     
+    mars_data['hemisphere_urls'] = img_urls
+
+    browser.quit()
+    return mars_data
