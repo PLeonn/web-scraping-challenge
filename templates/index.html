@@ -26,14 +26,13 @@
     
     <div class="col-md-5"></div>
     <h3>Facts About Mars</h3>
-    {{mars_data.facts}}
+    {{mars_data.facts|safe}}
 
     <h3>Hemispheres</h3>
     <div class="row">
         {% for item in mars_data.hemisphere_urls %}
-          <div class="col-md-6">
-          
-          <img src= {{item.url}} alt="Hemisphere Image" />
+          <div class="col-md-6">          
+          <img src= {{item.url}} alt="Hemisphere Image" height="500" width = "500"/>
           <h3>"{{ item.title }}"</h3>
           </div>
         {% endfor %}
