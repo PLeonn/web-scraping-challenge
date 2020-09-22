@@ -55,7 +55,9 @@ def scrape():
     
     img_soup = bs(site_html, 'html.parser')
     
-    feat_img = img_soup.find('img', class_='fancybox-image')
+    feat_img = img_soup.find('img', class_='fancybox-image')['src']
+    print(feat_img)
+    print("*********")
     feat_img_url = base_url + feat_img
     mars_data['img_url'] = feat_img_url
     
@@ -88,9 +90,10 @@ def scrape():
         hemi_img_url = browser.html
         hemi_img_soup = bs(hemi_img_url, 'html.parser')
         hemi_img_link = base_hemi_url + hemi_img_soup.find('img', class_="wide-image")['src']
-        img_urls.append({"title": title, "url": hemi_img_link})
+        img_urls.append({"title": hemi_title, "url": hemi_img_link})
     
     mars_data['hemisphere_urls'] = img_urls
 
     browser.quit()
+    print(mars_data)
     return mars_data
