@@ -22,18 +22,18 @@
     <h3>{{ mars_data.title }}</h3>
     <p>{{ mars_data.paragraph }}</p>
     <h2>Check out Mars!</h2>
-    <img src= {{mars_data.featured_image_url}} alt="Featured Mars Image" />
+    <img src= {{mars_data.img_url}} alt="Featured Mars Image" />
     
     <div class="col-md-5"></div>
     <h3>Facts About Mars</h3>
-    {{mars_data.mars_facts|safe}}
+    {{mars_data.facts}}
 
     <h3>Hemispheres</h3>
     <div class="row">
-        {% for item in mars_data.hemisphere_image_urls %}
+        {% for item in mars_data.hemisphere_urls %}
           <div class="col-md-6">
           
-          <img src= {{item.image_url}} alt="Hemisphere Image" />
+          <img src= {{item.url}} alt="Hemisphere Image" />
           <h3>"{{ item.title }}"</h3>
           </div>
         {% endfor %}

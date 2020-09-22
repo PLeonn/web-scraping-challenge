@@ -31,7 +31,7 @@ def scrape():
     #Like before, not sure why I need this, but my CS friend said it should be here, and it works better
     time.sleep(4)
     
-    para  = para_soup.find('div', class_='article_teaser_body')
+    para = para_soup.find('div', class_='article_teaser_body')
     
     para_text = para.text
     
@@ -56,8 +56,6 @@ def scrape():
     img_soup = bs(site_html, 'html.parser')
     
     feat_img = img_soup.find('img', class_='fancybox-image')['src']
-    print(feat_img)
-    print("*********")
     feat_img_url = base_url + feat_img
     mars_data['img_url'] = feat_img_url
     
